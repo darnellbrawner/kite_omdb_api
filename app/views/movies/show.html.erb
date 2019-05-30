@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <%= image_tag @movie["Poster"] %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @movie["Title"] %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @movie["Year"]%>
+</p>
+
+<p>
+  <strong>Imdb:</strong>
+  <%= @movie["imdbID"] %>
+</p>
+
+<p>
+  <strong>Writer</strong>
+  <%= @movie["Write"] %>
+</p>
+<p>
+  <strong>BoxOffice </strong>
+  <%= @movie["BoxOffice"] %>
+</p>
+<p>
+  <strong>Plot </strong>
+  <%= @movie["Plot"] %>
+</p>
+
+<%#= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path(:q=>@q) %>

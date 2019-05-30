@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+<%= form_tag({controller: "movies", action: "index"}, method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q,@q) %>
+    <%= submit_tag("Search") %>
+    <span> <%= @movies.size %></span>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Like<th>
+      <th>IMG</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Imdb</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each_with_index do |movie,i| %>
+      <tr class="<%= cycle('light','dark')%>" >
+        <td><%= i+1 %> </td>
+        <td><%= check_box_tag 'favorite', 'yes', Favorate.where(imdbID:movie['imdbID']).exists?, :onclick => "update_favorate('#{movie['imdbID']}');" %></td>
+        <td><%= image_tag movie["Poster"], size:"100x100" %><td>
+        <td><%= link_to( movie["Title"], movie_path(movie["imdbID"],:q => @q) ) %></td>
+        <td><%= movie["Year"] %></td>
+        <td><%= movie["imdbID"] %></td>
+        <td><%#= link_to 'Show', movie %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Movie', new_movie_path %>

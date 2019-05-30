@@ -1,0 +1,22 @@
+<%= form_with(model: favorate, local: true) do |form| %>
+  <% if favorate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(favorate.errors.count, "error") %> prohibited this favorate from being saved:</h2>
+
+      <ul>
+      <% favorate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :imdbID %>
+    <%= form.text_field :imdbID %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Favorates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Imdbid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @favorates.each do |favorate| %>
+      <tr>
+        <td><%= favorate.imdbID %></td>
+        <td><%= link_to 'Show', favorate %></td>
+        <td><%= link_to 'Edit', edit_favorate_path(favorate) %></td>
+        <td><%= link_to 'Destroy', favorate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Favorate', new_favorate_path %>
