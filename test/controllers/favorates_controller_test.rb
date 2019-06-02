@@ -17,7 +17,7 @@ class FavoratesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create favorate" do
     assert_difference('Favorate.count') do
-      post favorates_url, params: { favorate: { imdbID: @favorate.imdbID } }
+      post favorates_url, params: { favorate: { imdb_id: @favorate.imdb_id } }
     end
 
     assert_redirected_to favorate_url(Favorate.last)
@@ -34,7 +34,7 @@ class FavoratesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update favorate" do
-    patch favorate_url(@favorate), params: { favorate: { imdbID: @favorate.imdbID } }
+    patch favorate_url(@favorate), params: { favorate: { imdb_id: @favorate.imdb_id } }
     assert_redirected_to favorate_url(@favorate)
   end
 

@@ -15,12 +15,12 @@
 //= require turbolinks
 //= require_tree .
 
-function update_favorate(omdbID){ 
+function update_favorate(imdb_id){ 
     Rails.ajax({
         type: "GET", 
-        url: "/favorates/toggle/"+omdbID,
+        url: "/favorates/toggle/"+imdb_id,
         data: "",
         success: function(data){},
-        error: function(data){alert(omdbID)}
+        error: function(data){}
       })
 }

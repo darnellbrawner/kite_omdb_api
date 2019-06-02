@@ -4,16 +4,21 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @q = params[:q]||"MIB"
-    url = "#{OMDB_API_URL}&s=#{@q}"
-    resp = HTTParty.get(url)
-    @movies = resp.parsed_response["Search"]
+    @title = params[:title]||""
+    @year = params[:year]||""
+    @type = params[:type]||""
+
+    if @title.nil?
+      @movies =  Movie.all
+    else
+      @movies = Movie.where(:title => @title, :year => @year, :type => @type)
+    end
   end
 
   # GET /movies/1
   # GET /movies/1.json
   def show
-    @q=params[:q]||'MIB'
+    @movie = Movie.find(params[:id])
   end
 
   # GET /movies/new
@@ -68,9 +73,6 @@ class MoviesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
-      url = "#{OMDB_API_URL}&i=#{params[:id]}&plot=full" 
-      resp = HTTParty.get(url)
-      @movie = resp.parsed_response
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

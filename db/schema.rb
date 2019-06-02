@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_05_30_160741) do
 
   create_table "favorates", force: :cascade do |t|
-    t.string "imdbID"
+    t.string "imdb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

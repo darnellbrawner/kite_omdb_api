@@ -23,9 +23,8 @@ class FavoratesController < ApplicationController
 
   # POST /favorates/toggle
   def toggle
-    @favorate = Favorate.where(imdbID:params[:id]).first
-    #f.blank? ? Favorate.new(omdbID:id).save : f.destory
-    @favorate.nil? ?  Favorate.new(imdbID:params[:id]).save : @favorate.destroy
+    @favorate = Favorate.where(imdb_id:params[:id]).first
+    @favorate.nil? ?  Favorate.new(imdb_id:params[:id]).save : @favorate.destroy
     respond_to do |format|
       format.html { redirect_to favorates_url, notice: 'Favorate was successfully toggled.' }
       format.json { head :no_content }
@@ -81,6 +80,6 @@ class FavoratesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def favorate_params
-      params.require(:favorate).permit(:imdbID)
+      params.require(:favorate).permit(:imdb_id)
     end
 end

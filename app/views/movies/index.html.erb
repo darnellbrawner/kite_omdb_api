@@ -3,38 +3,39 @@
 <h1>Movies</h1>
 <%= form_tag({controller: "movies", action: "index"}, method: "get") do %>
     <%= label_tag(:q, "Search for:") %>
-    <%= text_field_tag(:q,@q) %>
+    <%= text_field_tag(:title, @title) %>
+    <%= label_tag(:year, "Year:")%>
+    <%= text_field_tag(:year, @year) %>
+    <%= label_tag(:type, "Type:")%>
+    <%= select_tag(:type, options_for_select(['movie','series','episode'], @type),include_blank: true ) %>
     <%= submit_tag("Search") %>
     <span> <%= @movies.size %></span>
 <% end %>
+<% if @movies.blank? %>
+<h2>No Results</h2>
+<% else%>
 <table>
   <thead>
     <tr>
       <th>#</th>
-      <th>Like<th>
-      <th>IMG</th>
+      <th>Like</th>
       <th>Title</th>
       <th>Year</th>
       <th>Imdb</th>
-      <th colspan="5"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @movies.each_with_index do |movie,i| %>
-      <tr class="<%= cycle('light','dark')%>" >
+      <tr>
         <td><%= i+1 %> </td>
-        <td><%= check_box_tag 'favorite', 'yes', Favorate.where(imdbID:movie['imdbID']).exists?, :onclick => "update_favorate('#{movie['imdbID']}');" %></td>
-        <td><%= image_tag movie["Poster"], size:"100x100" %><td>
-        <td><%= link_to( movie["Title"], movie_path(movie["imdbID"],:q => @q) ) %></td>
-        <td><%= movie["Year"] %></td>
-        <td><%= movie["imdbID"] %></td>
-        <td><%#= link_to 'Show', movie %></td>
+        <td><%= check_box_tag 'favorite', 'yes', Favorate.where(imdb_id: movie.imdb_id ).exists?, :onclick => "update_favorate('#{movie.imdb_id}');" %></td>
+        <td><%= link_to( movie.title, movie_path(movie.imdb_id) ) %></td>
+        <td><%= movie.year %></td>
+        <td><%= movie.imdb_id %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<% end %>
 <br>
 
-<%#= link_to 'New Movie', new_movie_path %>

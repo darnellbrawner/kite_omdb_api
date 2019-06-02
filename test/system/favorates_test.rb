@@ -14,7 +14,7 @@ class FavoratesTest < ApplicationSystemTestCase
     visit favorates_url
     click_on "New Favorate"
 
-    fill_in "Imdbid", with: @favorate.imdbID
+    fill_in "imdb_id", with: @favorate.imdb_id
     click_on "Create Favorate"
 
     assert_text "Favorate was successfully created"
@@ -25,7 +25,7 @@ class FavoratesTest < ApplicationSystemTestCase
     visit favorates_url
     click_on "Edit", match: :first
 
-    fill_in "Imdbid", with: @favorate.imdbID
+    fill_in "imdb_id", with: @favorate.imdb_id
     click_on "Update Favorate"
 
     assert_text "Favorate was successfully updated"
