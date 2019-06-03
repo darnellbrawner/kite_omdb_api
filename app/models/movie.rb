@@ -40,7 +40,7 @@ class << self
         keys.zip(data.values).to_h
     end 
     def connection(args)
-        url = "#{OMDB_API_URL}&#{args}"
+        url = "http://www.omdbapi.com/?apikey=652d5b3f&#{args}"
         resp = HTTParty.get(url)
         return resp.parsed_response
     end

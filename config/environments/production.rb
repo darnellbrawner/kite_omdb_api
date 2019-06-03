@@ -92,5 +92,4 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  OMDB_API_URL="http://www.omdbapi.com/?apikey=652d5b3f&"
 end
